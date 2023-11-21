@@ -1,17 +1,16 @@
-version: '3.4'
+version: "3.4"
 
 services:
   webapp:
-    build: 
-        context: .
-        args:
-            - dotnet_configuration=${DOTNET_CONFIGURATION}
+    build:
+      context: .
+      args:
+        - dotnet_configuration=${DOTNET_CONFIGURATION}
     ports:
       - 8080:80
       - 8443:443
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
-
 # TODO add HTTPS
 #     - ASPNETCORE_URLS=https://+:443;http://+:80
 #     - ASPNETCORE_Kestrel__Certificates__Default__Password=password
