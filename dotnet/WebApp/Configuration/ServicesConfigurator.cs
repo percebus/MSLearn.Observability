@@ -19,8 +19,8 @@ namespace JCystems.MSLearn.Observability.WebApp.Configuration
         /// <returns>A IServiceCollection.</returns>
         public static IServiceCollection ConfigureServices(this IServiceCollection services, ConfigurationManager configuration, ConfigureHostBuilder host)
         {
-            // Add services to the container.
             services.AddControllers();
+            services.AddRouting(options => options.LowercaseUrls = true);
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();

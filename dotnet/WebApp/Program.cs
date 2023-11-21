@@ -24,5 +24,6 @@ oWebApplication.UseHttpsRedirection();
 oWebApplication.UseAuthorization();
 
 oWebApplication.MapControllers();
+oWebApplication.MapPrometheusScrapingEndpoint();
 
 oWebApplication.Run();

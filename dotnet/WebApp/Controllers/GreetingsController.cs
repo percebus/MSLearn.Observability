@@ -10,29 +10,19 @@ namespace JCystems.MSLearn.Observability.WebApp.Controllers
     /// <summary>
     /// Greetings Controller.
     /// </summary>
-    [Route("api/[controller]")]
-    [ApiController]
-    public class GreetingController : ControllerBase
+    public class GreetingsController : ObservableControllerBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GreetingController"/> class.
+        /// Initializes a new instance of the <see cref="GreetingsController"/> class.
         /// </summary>
-        /// <param name="logger"><see cref="ILogger"/> instance for <see cref="GreetingController"/>.</param>
+        /// <param name="logger"><see cref="ILogger"/> instance for <see cref="GreetingsController"/>.</param>
         /// <param name="activitySource"><see cref="ActivitySource"/> instance.</param>
         /// <param name="meter"><see cref="Meter"/> instance.</param>
-        public GreetingController(ILogger<GreetingController> logger, ActivitySource activitySource, Meter meter)
+        public GreetingsController(ILogger<GreetingsController> logger, ActivitySource activitySource, Meter meter)
+            : base(logger, activitySource, meter)
         {
-            this.Logger = logger;
-            this.ActivitySource = activitySource;
-            this.Meter = meter;
             this.GreetingsCount = this.Meter.CreateCounter<int>("greetings.count", description: "Counts the number of greetings");
         }
-
-        private ILogger<GreetingController> Logger { get; set; }
-
-        private ActivitySource ActivitySource { get; set; }
-
-        private Meter Meter { get; set; }
 
         private Counter<int> GreetingsCount { get; set; }
 
