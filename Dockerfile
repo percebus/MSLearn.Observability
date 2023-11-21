@@ -1,22 +1,22 @@
 #See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /src
-COPY ["MSLearn.Observability/MSLearn.Observability.csproj", "MSLearn.Observability/"]
-RUN dotnet restore "MSLearn.Observability/MSLearn.Observability.csproj"
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS base
+ARG dotnet_configuration=Release
+ENV DOTNET_CONFIGURATION=${dotnet_configuration}
+WORKDIR /project
 COPY . .
-WORKDIR "/src/MSLearn.Observability"
-RUN dotnet build "MSLearn.Observability.csproj" -c Release -o /app/build
+RUN ls -la
+RUN dotnet restore *.sln
+
+FROM base AS build
+RUN dotnet build *.sln -c ${DOTNET_CONFIGURATION} -o ./bin
 
 FROM build AS publish
-RUN dotnet publish "MSLearn.Observability.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish ./dotnet/WebApp/WebApp.csproj -c ${DOTNET_CONFIGURATION} -o ./publish /p:UseAppHost=false
 
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS app
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "MSLearn.Observability.dll"]
+COPY --from=publish /project/publish .
+EXPOSE 80
+EXPOSE 443
+ENTRYPOINT ["dotnet", "JCystems.MSLearn.Observability.WebApp.dll"]

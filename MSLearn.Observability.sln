@@ -8,8 +8,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F8D4603-F5A6-4677-B912-0A24222325D0}"
 	ProjectSection(SolutionItems) = preProject
 		.dockerignore = .dockerignore
+		.env = .env
+		.env.Debug = .env.Debug
+		.env.Release = .env.Release
 		.gitignore = .gitignore
 		Dockerfile = Dockerfile
+		docker-compose.yml = docker-compose.yml
 		HISTORY.md = HISTORY.md
 		LICENSE = LICENSE
 		README.md = README.md
