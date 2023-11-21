@@ -1,25 +1,35 @@
-var builder = WebApplication.CreateBuilder(args);
+// <copyright file="Program.cs" company="JCystems">
+// Licensed under the MIT license. See LICENSE file in the samples root for full license information.
+// </copyright>
+
+using JCystems.MSLearn.Observability.WebApp.Configuration;
+
+var oWebApplicationBuilder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+oWebApplicationBuilder.Services.AddControllers();
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+oWebApplicationBuilder.Services.AddEndpointsApiExplorer();
+oWebApplicationBuilder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+oWebApplicationBuilder.Services.ConfigureServices(
+    oWebApplicationBuilder.Configuration,
+    oWebApplicationBuilder.Host);
+
+var oWebApplication = oWebApplicationBuilder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (oWebApplication.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    oWebApplication.UseSwagger();
+    oWebApplication.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+oWebApplication.UseHttpsRedirection();
 
-app.UseAuthorization();
+oWebApplication.UseAuthorization();
 
-app.MapControllers();
+oWebApplication.MapControllers();
 
-app.Run();
+oWebApplication.Run();

@@ -3,6 +3,7 @@
 // </copyright>
 namespace JCystems.MSLearn.Observability.WebApp.Controllers
 {
+    using JCystems.MSLearn.Observability.WebApp.Constants;
     using JCystems.MSLearn.Observability.WebApp.Models;
     using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +11,7 @@ namespace JCystems.MSLearn.Observability.WebApp.Controllers
     /// Weather Forecast Controller class.
     /// </summary>
     [ApiController]
-    [Route("weather/forecast")]
+    [Route("api/weather/forecasts")]
     public class WeatherForecastController : ControllerBase
     {
         /// <summary>
@@ -21,11 +22,6 @@ namespace JCystems.MSLearn.Observability.WebApp.Controllers
         {
             this.Logger = logger;
         }
-
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching",
-        };
 
         private ILogger<WeatherForecastController> Logger { get; set; }
 
@@ -46,7 +42,7 @@ namespace JCystems.MSLearn.Observability.WebApp.Controllers
                 {
                     Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                     TemperatureC = Random.Shared.Next(-20, 55),
-                    Summary = Summaries[Random.Shared.Next(Summaries.Length)],
+                    Summary = WeatherTypes.All[Random.Shared.Next(WeatherTypes.All.Length)],
                 })
                 .ToArray();
         }
