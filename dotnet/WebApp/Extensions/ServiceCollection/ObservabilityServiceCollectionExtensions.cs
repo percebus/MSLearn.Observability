@@ -1,7 +1,7 @@
 ﻿// <copyright file="ObservabilityServiceCollectionExtensions.cs" company="JCystems">
 // Licensed under the MIT license. See LICENSE file in the samples root for full license information.
 // </copyright>
-namespace JCystems.MSLearn.Observability.WebApp.Configuration
+namespace JCystems.MSLearn.Observability.WebApp.Extensions.ServiceCollection
 {
     using System.Diagnostics;
     using System.Diagnostics.Metrics;
@@ -18,13 +18,9 @@ namespace JCystems.MSLearn.Observability.WebApp.Configuration
 
         private const string Version = "1.0";
 
-        private static readonly ActivitySource ActivitySource = new(
-            ObservabilityServiceCollectionExtensions.ServiceName,
-            ObservabilityServiceCollectionExtensions.Version);
+        private static readonly ActivitySource ActivitySource = new(ServiceName, Version);
 
-        private static readonly Meter Meter = new(
-            ObservabilityServiceCollectionExtensions.ServiceName,
-            ObservabilityServiceCollectionExtensions.Version);
+        private static readonly Meter Meter = new(ServiceName, Version);
 
         /// <summary>
         /// Configures logging traces and metrics.
@@ -43,8 +39,8 @@ namespace JCystems.MSLearn.Observability.WebApp.Configuration
             var tracingOtlpEndpoint = configuration["OTLP_ENDPOINT_URL"];
             var oOpenTelemetryBuilder = services.AddOpenTelemetry();
 
-            services.AddSingleton(ObservabilityServiceCollectionExtensions.ActivitySource);
-            services.AddSingleton(ObservabilityServiceCollectionExtensions.Meter);
+            services.AddSingleton(ActivitySource);
+            services.AddSingleton(Meter);
 
             // Configure OpenTelemetry Resources with the application name
             oOpenTelemetryBuilder

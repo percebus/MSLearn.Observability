@@ -1,6 +1,8 @@
 ﻿// <copyright file="ServicesConfigurator.cs" company="JCystems">
 // Licensed under the MIT license. See LICENSE file in the samples root for full license information.
 // </copyright>
+using JCystems.MSLearn.Observability.WebApp.Extensions.ServiceCollection;
+
 namespace JCystems.MSLearn.Observability.WebApp.Configuration
 {
     /// <summary>
