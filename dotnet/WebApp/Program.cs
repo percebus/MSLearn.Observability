@@ -6,13 +6,6 @@ using JCystems.MSLearn.Observability.WebApp.Configuration;
 
 var oWebApplicationBuilder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-oWebApplicationBuilder.Services.AddControllers();
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-oWebApplicationBuilder.Services.AddEndpointsApiExplorer();
-oWebApplicationBuilder.Services.AddSwaggerGen();
-
 oWebApplicationBuilder.Services.ConfigureServices(
     oWebApplicationBuilder.Configuration,
     oWebApplicationBuilder.Host);

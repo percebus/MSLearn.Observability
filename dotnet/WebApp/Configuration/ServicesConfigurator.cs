@@ -1,10 +1,10 @@
 ﻿// <copyright file="ServicesConfigurator.cs" company="JCystems">
 // Licensed under the MIT license. See LICENSE file in the samples root for full license information.
 // </copyright>
-using JCystems.MSLearn.Observability.WebApp.Extensions.ServiceCollection;
-
 namespace JCystems.MSLearn.Observability.WebApp.Configuration
 {
+    using JCystems.MSLearn.Observability.WebApp.Extensions.ServiceCollection;
+
     /// <summary>
     /// Class ServiceConfigurator.
     /// </summary>
@@ -19,6 +19,13 @@ namespace JCystems.MSLearn.Observability.WebApp.Configuration
         /// <returns>A IServiceCollection.</returns>
         public static IServiceCollection ConfigureServices(this IServiceCollection services, ConfigurationManager configuration, ConfigureHostBuilder host)
         {
+            // Add services to the container.
+            services.AddControllers();
+
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
+
             // appsettings
             configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
             configuration.AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true);
