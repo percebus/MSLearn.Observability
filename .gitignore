@@ -1,6 +1,10 @@
 
+# .env files
 !.env*
 .env
+
+# grafana and/or prometheus dynamic data
+data/
 
 ##############################
 ### VisualStudio.gitignore ### SRC: https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
