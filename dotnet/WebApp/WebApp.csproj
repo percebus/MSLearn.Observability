@@ -8,6 +8,7 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <RootNamespace>JCystems.MSLearn.Observability.WebApp</RootNamespace>
     <AssemblyName>JCystems.MSLearn.Observability.WebApp</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

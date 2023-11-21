@@ -33,7 +33,7 @@ namespace JCystems.MSLearn.Observability.WebApp.Controllers
         /// <returns>Collection of WeatherForecast.</returns>
         [HttpGet]
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Find))]
-        public IEnumerable<WeatherForecast> Find()
+        public ActionResult<IEnumerable<WeatherForecast>> Find()
         {
             using (var activity = this.ActivitySource.StartActivity())
             {

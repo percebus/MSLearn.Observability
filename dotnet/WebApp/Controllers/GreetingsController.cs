@@ -1,4 +1,4 @@
-﻿// <copyright file="GreetingController.cs" company="JCystems">
+﻿// <copyright file="GreetingsController.cs" company="JCystems">
 // Licensed under the MIT license. See LICENSE file in the samples root for full license information.
 // </copyright>
 namespace JCystems.MSLearn.Observability.WebApp.Controllers
@@ -35,7 +35,7 @@ namespace JCystems.MSLearn.Observability.WebApp.Controllers
         /// <returns>An asynchronous <see cref="Task"/> of an <see cref="ActionResult"/> of a <see cref="string"/> greeting message.</returns>
         [HttpPost]
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
-        public async Task<ActionResult<string>> Post(string? greeting = null)
+        public ActionResult<string> Post(string? greeting = null)
         {
             using (var activity = this.ActivitySource.StartActivity())
             {
